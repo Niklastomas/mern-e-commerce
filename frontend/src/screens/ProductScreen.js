@@ -17,7 +17,7 @@ function ProductScreen() {
         .catch((error) => console.log(error));
     };
     fetchProduct();
-  }, []);
+  }, [id]);
 
   return (
     <div>
