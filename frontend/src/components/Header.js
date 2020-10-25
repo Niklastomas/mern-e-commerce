@@ -8,7 +8,6 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
   const { userInfo } = userLogin;
-  console.log(userInfo);
   return (
     <Navbar bg='light' expand='lg' collapseOnSelect>
       <Container>
