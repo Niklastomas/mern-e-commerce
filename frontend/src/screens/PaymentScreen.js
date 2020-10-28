@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
-import { savePaymentMethod, saveShippingAddress } from '../actions/cartActions';
+import { savePaymentMethod } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 function PaymentScreen({ history }) {

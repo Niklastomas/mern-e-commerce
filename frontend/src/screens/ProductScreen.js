@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {
   Col,
@@ -7,7 +6,6 @@ import {
   ListGroup,
   Card,
   Button,
-  ListGroupItem,
   FormControl,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
