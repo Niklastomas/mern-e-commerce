@@ -2,28 +2,43 @@ import React, { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { listUsers } from '../actions/userActions';
+import { listUsers, deleteUser } from '../actions/userActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-function UserListScreen() {
+function UserListScreen({ history }) {
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  useEffect(() => {
-    dispatch(listUsers());
-  }, [dispatch]);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  console.log(users);
+  const userDelete = useSelector((state) => state.userDelete);
+  const { error: errorDelete, success: successDelete } = userDelete;
+
+  useEffect(() => {
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(listUsers());
+      console.log(userInfo);
+    } else {
+      history.push('/login');
+    }
+  }, [dispatch, history, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
-    console.log(id);
+    if (window.confirm('Are you sure?')) {
+      dispatch(deleteUser(id));
+    }
   };
   return (
     <>
       <h1>Users</h1>
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {successDelete && (
+        <Message variant='success'>Succesfully deleted user</Message>
+      )}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -51,7 +66,7 @@ function UserListScreen() {
                   <td>
                     {user.isAdmin ? (
                       <i
-                        className='fas fa-checked'
+                        className='fas fa-check'
                         style={{ color: 'green' }}
                       ></i>
                     ) : (
@@ -59,8 +74,8 @@ function UserListScreen() {
                     )}
                   </td>
                   <td>
-                    <LinkContainer to={`/user/${user._id}/edit`}>
-                      <Button variant='ligth' className='btn-sm'>
+                    <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                      <Button variant='primary' className='btn-sm mx-1'>
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>
