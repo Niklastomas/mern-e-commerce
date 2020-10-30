@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <Navbar
       expand='lg'
-      className='navbar navbar-expand-lg navbar-light bg-light'
+      className='navbar navbar-expand-lg navbar-dark bg-dark'
       collapseOnSelect
     >
       <Container>
