@@ -3,7 +3,9 @@ import {
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
+  ORDER_DELIVER_FAIL,
   ORDER_DELIVER_REQUEST,
+  ORDER_DELIVER_SUCCESS,
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
@@ -145,12 +147,12 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     );
 
     dispatch({
-      type: ORDER_PAY_SUCCESS,
+      type: ORDER_DELIVER_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: ORDER_PAY_FAIL,
+      type: ORDER_DELIVER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
