@@ -49,7 +49,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
       res.status(404).json({ message: 'Product not found' });
     } else {
       res.status(200).json({
-        message: `Successfully deleted product with id: ${product._id}`,
+        message: 'Successfully deleted product',
       });
     }
   });
