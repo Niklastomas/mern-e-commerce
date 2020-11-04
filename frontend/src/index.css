@@ -34,6 +34,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
 }
 
 .carousel-caption {
@@ -42,12 +43,26 @@ a {
 }
 
 .carousel-caption h2 {
-  color: white;
+  color: black;
 }
 
 .carousel img {
   height: 300px;
-  padding: 30px;
+  padding-top: 30px;
   margin: 70px 0;
-  border-radius: 50%;
+  /* border-radius: 10px; */
 }
+
+.carousel li {
+  background-color: black;
+}
+
+.fa-chevron-left,
+.fa-chevron-right {
+  color: black;
+  font-size: 30px;
+}
+
+/* .fa-chevron-right {
+  color: black;
+} */
